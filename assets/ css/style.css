@@ -254,7 +254,77 @@ body{
     grid-template-columns: 1fr;
   }
 }
+/* ====== JOIN (процес відбору, шахматка + линия) ====== */
+.join{ background:#fff; padding:56px 0; }
 
+
+/* контейнер таймлайна */
+.timeline{ position:relative; margin-top:8px; z-index: 1000;}
+
+/* линия как SVG-оверлей (100x100 viewBox, легко править точки под кол-во шагов) */
+.timeline-line{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; 
+}
+
+/* сетка карточек: ровные ряды, «шахматный» порядок */
+.timeline-grid{
+  list-style:none; margin:0; padding:0;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;      /* расстояние между колонками */
+  row-gap: 36px;         /* вертикальные отступы между рядами */
+  align-items:center;    /* центровка по линии */
+}
+
+/* базовый стиль карточки */
+.join-step{
+  background:#fff; border-radius:16px; padding:18px 18px 16px;
+  box-shadow:0 12px 28px rgba(0,0,0,.06);
+  position:relative; min-height:120px;
+}
+.join-step h4{ margin:2px 0 6px; font-size:18px; font-weight:700; color:#2d3319; }
+.join-step p{ margin:0; color:#444; line-height:1.45; }
+
+/* бейдж номера */
+.join-step .step-index{
+  position:absolute; top:10px; right:12px;
+  font-weight:900; letter-spacing:.04em; color:#cacfd6;     font-size: 1.5rem;
+}
+
+/* расположение: левая колонка / правая колонка */
+.join-step.left  { grid-column:1; justify-self:start;  width:100%; max-width:460px; }
+.join-step.right { grid-column:2; justify-self:end;    width:100%; max-width:460px; }
+
+/* «шахматный» ритм: добавим легкие вертикальные смещения,
+   чтобы линия шла плавным зигзагом (как на референсе) */
+.timeline-grid > .join-step:nth-child(1){ margin-top:  6px; }
+.timeline-grid > .join-step:nth-child(2){ margin-top: 18px; }
+.timeline-grid > .join-step:nth-child(3){ margin-top:  0;  }
+.timeline-grid > .join-step:nth-child(4){ margin-top: 16px; }
+.timeline-grid > .join-step:nth-child(5){ margin-top: -2px; }
+.timeline-grid > .join-step:nth-child(6){ margin-top: 12px; }
+
+/* CTA снизу */
+.join-cta{ text-align:center; margin-top:28px; }
+
+/* ====== АДАПТИВ ====== */
+@media (max-width: 1024px){
+  .timeline-grid{ column-gap:40px; }
+  .join-step.left, .join-step.right{ max-width:520px; }
+}
+@media (max-width: 860px){
+  .join-videos{ grid-template-columns:1fr; }
+  .timeline-line{ display:none; }              /* на мобиле убираем линию */
+  .timeline-grid{
+    grid-template-columns:1fr;                 /* одна колонка */
+    row-gap:16px;
+  }
+  .join-step.left, .join-step.right{
+    grid-column:auto; justify-self:stretch; max-width:none;
+    margin-top:0 !important;
+  }
+}
 
 /* ====== FOOTER ====== */
 .footer{
