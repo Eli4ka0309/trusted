@@ -132,13 +132,22 @@
 
     <!-- таймлайн -->
     <div class="timeline">
-      <!-- линия поверх сетки -->
-      <svg class="timeline-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <!-- Зигзаг соединяет центры шагов: L(лево) -> R(право) и т.д. -->
-        <path d="M 25 10 L 75 25 L 25 40 L 75 55 L 25 70 L 75 85"
-              fill="none" stroke="rgba(45,51,25,0.45)" stroke-width="0.4"
-              stroke-linecap="round" stroke-linejoin="round" z-index="1000"/>
-      </svg>
+     <!-- линия поверх карточек -->
+<svg class="timeline-line" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M 50 2.5
+           C 35 5, 35 10, 50 12.5
+           C 65 15, 65 20, 50 22.5
+           C 35 25, 35 30, 50 32.5
+           C 65 35, 65 40, 50 42.5"
+        fill="none"
+        stroke="rgba(0,0,0,.45)"
+        stroke-width="0.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+
 
       <!-- сетка шагов -->
       <ol class="timeline-grid">

@@ -261,21 +261,26 @@ body{
 /* контейнер таймлайна */
 .timeline{ position:relative; margin-top:8px; z-index: 1000;}
 
-/* линия как SVG-оверлей (100x100 viewBox, легко править точки под кол-во шагов) */
+/* слой таймлайна */
+.timeline{ position:relative; margin-top:8px; }
+
+/* линия — абсолютный оверлей СВЕРХУ карточек */
 .timeline-line{
   position:absolute; inset:0; width:100%; height:100%;
-  pointer-events:none; 
+  z-index: 3;                 /* ВАЖНО: линия выше карточек */
+  pointer-events: none;       /* не мешает кликам */
 }
 
-/* сетка карточек: ровные ряды, «шахматный» порядок */
-.timeline-grid{
-  list-style:none; margin:0; padding:0;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 60px;      /* расстояние между колонками */
-  row-gap: 36px;         /* вертикальные отступы между рядами */
-  align-items:center;    /* центровка по линии */
+/* карточки ниже линии */
+.timeline-grid{ position:relative; z-index: 2; }
+
+/* (остальные стили твоих .join-step остаются) */
+
+/* мобильный: прячем линию, когда одна колонка */
+@media (max-width: 860px){
+  .timeline-line{ display:none; }
 }
+
 
 /* базовый стиль карточки */
 .join-step{
