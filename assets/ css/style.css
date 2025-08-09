@@ -188,6 +188,74 @@ body{
 .offer h4{margin:0 0 6px; font-size:18px}
 .offer p{margin:0; color:#596360}
 
+/* ====== REVIEWS (CIRCLES) ====== */
+.reviews {
+  background: #f8faf9;
+  padding: 56px 0;
+  text-align: center;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+.review-circle {
+  background: #fff;
+  border-radius: 50%;
+  width: 280px;
+  height: 280px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.review-avatar-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 3px solid #ddd;
+}
+
+.review-text {
+  font-size: 14px;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.review-name {
+  font-weight: 600;
+  color: #000;
+}
+
+.review-position {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* ====== FOOTER ====== */
 .footer{
   background: linear-gradient(90deg, #08281B, #394f11);
