@@ -199,21 +199,58 @@
     <h3 class="section-subtitle">Контакти</h3>
     <h2 class="section-title">Залишити заявку</h2>
 
-    <!-- Netlify Form -->
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-  <input type="hidden" name="form-name" value="contact" />
-  <p style="display:none"><label>Не заповнюйте <input name="bot-field"></label></p>
+    <!-- Netlify form (progressive enhancement) -->
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/?nojs=1"               
+      class="contact-form js-netlify-form"
+      novalidate
+    >
+      <!-- обязательно для Netlify Forms -->
+      <input type="hidden" name="form-name" value="contact" />
+      <!-- honeypot -->
+      <p style="display:none">
+        <label>Не заповнюйте це поле: <input name="bot-field" /></label>
+      </p>
 
-  <input name="name"  type="text"  placeholder="Ім’я" required>
-  <input name="phone" type="tel"   placeholder="+380 67 123 45 67" required>
-  <input name="email" type="email" placeholder="you@example.com" required>
+      <div class="form-field">
+        <label for="name">Ваше ім’я</label>
+        <input id="name" name="name" type="text"
+               placeholder="Ім’я та прізвище" required autocomplete="name">
+        <small class="error">Вкажіть ім’я</small>
+      </div>
 
-  <button type="submit">Надіслати</button>
-</form>
+      <div class="form-field">
+        <label for="phone">Телефон</label>
+        <input id="phone" name="phone" type="tel"
+               placeholder="+380 67 123 45 67" required
+               inputmode="tel" autocomplete="tel"
+               pattern="^\+?[\d\s\-\(\)]{10,}$">
+        <small class="error">Вкажіть коректний номер</small>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email"
+               placeholder="you@example.com" required autocomplete="email">
+        <small class="error">Вкажіть коректний email</small>
+      </div>
+
+      <!-- <div data-netlify-recaptcha="true"></div>  — если включишь reCAPTCHA в Netlify -->
+
+      <button type="submit" class="btn-primary form-submit">
+        <span class="btn-label">Надіслати</span>
+      </button>
+      <p class="form-note">Натискаючи «Надіслати», ви погоджуєтесь з політикою конфіденційності.</p>
+    </form>
+
+    <!-- сообщения -->
+    <div id="formAlert" class="alert" aria-live="polite" hidden></div>
   </div>
 </section>
-
-
 
 
   <!-- Footer -->
@@ -222,6 +259,56 @@
       <p>© 2025 Trusted. Усі права захищені.</p>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    const form   = document.querySelector('.js-netlify-form');
+    const alert  = document.getElementById('formAlert');
+    const button = form.querySelector('.form-submit');
+
+    function setAlert(type, text){
+      alert.className = 'alert ' + (type === 'ok' ? 'alert--ok' : 'alert--err');
+      alert.textContent = text;
+      alert.hidden = false;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alert.hidden = true;
+
+      // простая валидация
+      let valid = true;
+      form.querySelectorAll('.form-field').forEach(w => {
+        const input = w.querySelector('input');
+        if (!input.checkValidity()) { w.classList.add('invalid'); valid = false; }
+        else w.classList.remove('invalid');
+      });
+      if (!valid) return;
+
+      // готовим тело запроса для Netlify
+      const data = new FormData(form);
+      // важно: скрытое form-name уходит тоже
+      if (!data.get('form-name')) data.set('form-name', form.getAttribute('name'));
+
+      button.classList.add('is-loading');
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams([...data]).toString()
+        });
+        if (!res.ok) throw new Error('Network error');
+        form.reset();
+        setAlert('ok', 'Дякуємо! Заявка відправлена. Ми зв’яжемося з вами найближчим часом.');
+      } catch (err) {
+        setAlert('err', 'На жаль, не вдалося відправити. Спробуйте ще раз або напишіть нам.');
+      } finally {
+        button.classList.remove('is-loading');
+      }
+    });
+  })();
+</script>
+
 
 </body>
 </html>

@@ -342,14 +342,37 @@ body{
   border-color:#9fd8cb; /* Tiffany */
   box-shadow:0 0 0 4px rgba(159,216,203,.25)
 }
-.form-submit{grid-column:1 / -1}
+.form-field .error{display:none;font-size:12px;color:#c74343}
+.form-field.invalid .error{display:block}
+.form-field.invalid input{border-color:#c74343}
+
+.form-submit{grid-column:1 / -1; position:relative}
+.form-submit.is-loading{opacity:.8; pointer-events:none}
+.form-submit.is-loading::after{
+  content:""; position:absolute; right:16px; top:50%; width:18px; height:18px;
+  margin-top:-9px; border-radius:50%;
+  border:2px solid rgba(255,255,255,.6);
+  border-top-color:#fff; animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 .form-note{grid-column:1 / -1;margin:8px 0 0;color:#7b8b85;font-size:12px}
+
+/* уведомления */
+.alert{
+  max-width:720px;margin:16px auto 0; padding:12px 14px; border-radius:10px; font-size:14px
+}
+.alert--ok{
+  background:#ecf7f5; border:1px solid #b4e0d6; color:#2d3319;
+}
+.alert--err{
+  background:#fff2f2; border:1px solid #f3b3b3; color:#7a1f1f;
+}
 
 @media (max-width:768px){
   .contact-form{grid-template-columns:1fr}
   .form-submit,.form-note{grid-column:1/-1}
 }
-
 
 
 /* ====== FOOTER ====== */
