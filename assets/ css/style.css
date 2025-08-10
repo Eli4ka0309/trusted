@@ -177,6 +177,7 @@ body{
 .terms{
   /* background:var(--section-bg); */
   padding:56px 0;
+
 }
 .offers{
   display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
@@ -255,7 +256,14 @@ body{
   }
 }
 /* ====== JOIN (процес відбору, шахматка + линия) ====== */
-.join{ background:#fff; padding:56px 0; }
+.join{
+   /* background:#fff; padding:56px 0;  */
+   background-image: url('/assets/img/bg-terms/hiring-bg-transparent_3.png') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem;
+
+}
 
 
 /* контейнер таймлайна */
@@ -269,11 +277,17 @@ body{
 
 /* сетка карточек: ровные ряды, «шахматный» порядок */
 .timeline-grid{
+  background-image: url(/assets/img/bg-terms/Line_bg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+
   list-style:none; margin:0; padding:0;
   display:grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 60px;      /* расстояние между колонками */
-  row-gap: 36px;         /* вертикальные отступы между рядами */
+  column-gap: 2rem;      /* расстояние между колонками */
+  row-gap: 2rem;         /* вертикальные отступы между рядами */
   align-items:center;    /* центровка по линии */
 }
 
@@ -307,6 +321,10 @@ body{
 
 /* CTA снизу */
 .join-cta{ text-align:center; margin-top:28px; }
+
+.step-index.right{
+  left:  0rem !important;
+}
 
 /* ====== АДАПТИВ ====== */
 @media (max-width: 1024px){
