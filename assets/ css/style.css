@@ -261,26 +261,21 @@ body{
 /* контейнер таймлайна */
 .timeline{ position:relative; margin-top:8px; z-index: 1000;}
 
-/* слой таймлайна */
-.timeline{ position:relative; margin-top:8px; }
-
-/* линия — абсолютный оверлей СВЕРХУ карточек */
+/* линия как SVG-оверлей (100x100 viewBox, легко править точки под кол-во шагов) */
 .timeline-line{
   position:absolute; inset:0; width:100%; height:100%;
-  z-index: 3;                 /* ВАЖНО: линия выше карточек */
-  pointer-events: none;       /* не мешает кликам */
+  pointer-events:none; 
 }
 
-/* карточки ниже линии */
-.timeline-grid{ position:relative; z-index: 2; }
-
-/* (остальные стили твоих .join-step остаются) */
-
-/* мобильный: прячем линию, когда одна колонка */
-@media (max-width: 860px){
-  .timeline-line{ display:none; }
+/* сетка карточек: ровные ряды, «шахматный» порядок */
+.timeline-grid{
+  list-style:none; margin:0; padding:0;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;      /* расстояние между колонками */
+  row-gap: 36px;         /* вертикальные отступы между рядами */
+  align-items:center;    /* центровка по линии */
 }
-
 
 /* базовый стиль карточки */
 .join-step{
@@ -293,8 +288,8 @@ body{
 
 /* бейдж номера */
 .join-step .step-index{
-  position:absolute; top:10px; right:12px;
-  font-weight:900; letter-spacing:.04em; color:#cacfd6;     font-size: 1.5rem;
+  position:absolute; top:-1rem; right: 0rem;
+  font-weight:900; letter-spacing:.04em; color:#394f11; background: #394f112d; padding: 0.5rem; border-radius: 50%;  font-size: 1.2rem;
 }
 
 /* расположение: левая колонка / правая колонка */
