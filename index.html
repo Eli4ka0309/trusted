@@ -200,51 +200,16 @@
     <h2 class="section-title">Залишити заявку</h2>
 
     <!-- Netlify Form -->
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      action="/thanks.html"
-      class="contact-form"
-    >
-      <!-- обязательное скрытое поле: имя формы (должно совпадать с name="contact") -->
-      <input type="hidden" name="form-name" value="contact" />
-      <!-- honeypot (защита от ботов) -->
-      <p style="display:none">
-        <label>Не заповнюйте це поле: <input name="bot-field" /></label>
-      </p>
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+  <input type="hidden" name="form-name" value="contact" />
+  <p style="display:none"><label>Не заповнюйте <input name="bot-field"></label></p>
 
-      <div class="form-field">
-        <label for="name">Ваше ім’я</label>
-        <input id="name" name="name" type="text" placeholder="Ім’я та прізвище" required autocomplete="name" />
-      </div>
+  <input name="name"  type="text"  placeholder="Ім’я" required>
+  <input name="phone" type="tel"   placeholder="+380 67 123 45 67" required>
+  <input name="email" type="email" placeholder="you@example.com" required>
 
-      <div class="form-field">
-        <label for="phone">Телефон</label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="+380 67 123 45 67"
-          required
-          inputmode="tel"
-          autocomplete="tel"
-          pattern="^\+?[\d\s\-\(\)]{10,}$"
-        />
-      </div>
-
-      <div class="form-field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
-      </div>
-
-      <!-- reCAPTCHA от Netlify (по желанию: включить в Netlify → Forms) -->
-      <!-- <div data-netlify-recaptcha="true"></div> -->
-
-      <button type="submit" class="btn-primary form-submit">Надіслати</button>
-      <p class="form-note">Натискаючи «Надіслати», ви погоджуєтесь з політикою конфіденційності.</p>
-    </form>
+  <button type="submit">Надіслати</button>
+</form>
   </div>
 </section>
 
