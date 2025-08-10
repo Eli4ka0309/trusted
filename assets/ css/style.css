@@ -289,7 +289,7 @@ body{
 /* бейдж номера */
 .join-step .step-index{
   position:absolute; top:-1rem; right: 0rem;
-  font-weight:900; letter-spacing:.04em; color:#394f11; background: #ff0b0bf6; padding: 0.5rem; border-radius: 50%;  font-size: 1.2rem;
+  font-weight:900; letter-spacing:.04em; color:#394f11; background: #394f112d; padding: 0.5rem; border-radius: 50%;  font-size: 1.2rem;
 }
 
 /* расположение: левая колонка / правая колонка */
