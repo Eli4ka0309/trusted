@@ -325,6 +325,32 @@ body{
     margin-top:0 !important;
   }
 }
+/* ====== FORM ====== */
+.contacts{padding:56px 0;background:#fff}
+.contact-form{
+  max-width:720px;margin:16px auto 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px
+}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:13px;color:#5f6b67}
+.form-field input{
+  width:100%;padding:12px 14px;border-radius:10px;
+  border:1px solid #e1e5e4;background:#fff;outline:none;
+  transition:border-color .2s, box-shadow .2s
+}
+.form-field input:focus{
+  border-color:#9fd8cb; /* Tiffany */
+  box-shadow:0 0 0 4px rgba(159,216,203,.25)
+}
+.form-submit{grid-column:1 / -1}
+.form-note{grid-column:1 / -1;margin:8px 0 0;color:#7b8b85;font-size:12px}
+
+@media (max-width:768px){
+  .contact-form{grid-template-columns:1fr}
+  .form-submit,.form-note{grid-column:1/-1}
+}
+
+
 
 /* ====== FOOTER ====== */
 .footer{
